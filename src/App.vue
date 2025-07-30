@@ -66,11 +66,13 @@ const items = [
   <div>
     <table class="table">
       <thead>
-        <th>序號</th>
-        <th>品項</th>
-        <th>描述</th>
-        <th>價格</th>
-        <th>庫存</th>
+        <tr>
+          <th>序號</th>
+          <th>品項</th>
+          <th>描述</th>
+          <th>價格</th>
+          <th>庫存</th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="item in items" :key="item.id">
