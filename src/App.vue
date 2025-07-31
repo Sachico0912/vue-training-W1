@@ -1,7 +1,12 @@
 <script setup>
+import { ref } from 'vue'
 // import HelloWorld from './components/HelloWorld.vue'
 
-const items = [
+//LV1	將菜單轉為資料格式 -OK
+//LV2	可以重新設定菜單的庫存數量
+//LV3	還能再去設定品項名稱
+
+const items = ref([
   {
     id:1,
     name:'珍珠奶茶',
@@ -58,7 +63,18 @@ const items = [
     price:'60',
     quantity:'20'
   },
-]
+])
+
+function minus(items){ 
+  items.quantity--
+  console.log(items)
+}
+
+function plus(items){
+  items.quantity++
+  console.log('+')
+}
+
 
 </script>
 
@@ -80,9 +96,10 @@ const items = [
           <td>{{ item.name }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.price }}</td>
-          <td><button>-</button>
+          <td>
+            <button @click="minus()">-</button>
             {{ item.quantity }}
-            <button>+</button>
+            <button @click="plus()">+</button>
           </td>
         </tr>
       </tbody>
