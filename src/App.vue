@@ -79,6 +79,12 @@ function plus(items){
   // console.log(items)
 }
 
+function edit(){
+  // items.name
+  console.log('觸發')
+}
+
+
 
 </script>
 
@@ -97,7 +103,12 @@ function plus(items){
       <tbody>
         <tr v-for="item in items" :key="item.id">
           <td>{{item.id}}</td>
-          <td>{{ item.name }}</td>
+          <td>
+            <form>
+              {{ item.name }}
+            <button  @click.prevent="edit">編輯</button>
+            </form>
+          </td>
           <td>{{ item.description }}</td>
           <td>{{ item.price }}</td>
           <td>
@@ -110,6 +121,7 @@ function plus(items){
 
     </table>
   </div>
+ 
   
 </template>
 
