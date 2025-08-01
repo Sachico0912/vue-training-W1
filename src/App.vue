@@ -3,7 +3,7 @@ import { ref } from 'vue'
 // import HelloWorld from './components/HelloWorld.vue'
 
 //LV1	將菜單轉為資料格式 -OK
-//LV2	可以重新設定菜單的庫存數量
+//LV2	可以重新設定菜單的庫存數量 -OK
 //LV3	還能再去設定品項名稱
 
 const items = ref([
@@ -65,14 +65,18 @@ const items = ref([
   },
 ])
 
-function minus(items){ 
-  items.quantity--
-  console.log(items)
+function minus(items){
+  if (items.quantity > 0){
+    items.quantity--
+  } 
+  // console.log(items)
 }
 
 function plus(items){
+  if (items.quantity >= 0 ){
   items.quantity++
-  console.log('+')
+  }
+  // console.log(items)
 }
 
 
@@ -97,9 +101,9 @@ function plus(items){
           <td>{{ item.description }}</td>
           <td>{{ item.price }}</td>
           <td>
-            <button @click="minus()">-</button>
+            <button @click="minus(item)">-</button>
             {{ item.quantity }}
-            <button @click="plus()">+</button>
+            <button @click="plus(item)">+</button>
           </td>
         </tr>
       </tbody>
