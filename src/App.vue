@@ -65,6 +65,9 @@ const items = ref([
   },
 ])
 
+const editName = ref('')
+const editingID = ref(null)
+
 function minus(items){
   if (items.quantity > 0){
     items.quantity--
@@ -79,12 +82,22 @@ function plus(items){
   // console.log(items)
 }
 
-function edit(){
-  // items.name
-  console.log('觸發')
+function edit(item){
+  console.log(item)
+  editName.value = item.name
+  console.log(editName.value)
+  editingID.value = item.id
+  console.log(editingID.value)
 }
 
+function saveEdit(item){
+  item.name = editName.value
+  editingID.value = null
+}
 
+function cancelEdit(){
+  editingID.value = null
+}
 
 </script>
 
@@ -105,8 +118,17 @@ function edit(){
           <td>{{item.id}}</td>
           <td>
             <form>
+              <div v-if="editingID !== item.id">
               {{ item.name }}
-            <button  @click.prevent="edit">編輯</button>
+              <button  @click.prevent="edit(item)">編輯</button>
+              </div>
+              
+              <div v-else>
+                <input type="text" v-model="editName">
+              <button type="button" @click="saveEdit(item)">儲存</button>
+              <button type="button" @click="cancelEdit()">取消</button>
+              </div>
+
             </form>
           </td>
           <td>{{ item.description }}</td>
