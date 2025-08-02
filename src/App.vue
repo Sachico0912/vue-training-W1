@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 // import HelloWorld from './components/HelloWorld.vue'
 
-//LV1	將菜單轉為資料格式 -OK
+//LV1	將菜單轉為資料格式 -OK 
 //LV2	可以重新設定菜單的庫存數量 -OK
-//LV3	還能再去設定品項名稱
+//LV3	還能再去設定品項名稱 
 
 const items = ref([
   {
@@ -83,11 +83,11 @@ function plus(items){
 }
 
 function edit(item){
-  console.log(item)
+  // console.log(item)
   editName.value = item.name
-  console.log(editName.value)
+  // console.log(editName.value)
   editingID.value = item.id
-  console.log(editingID.value)
+  // console.log(editingID.value)
 }
 
 function saveEdit(item){
@@ -117,19 +117,15 @@ function cancelEdit(){
         <tr v-for="item in items" :key="item.id">
           <td>{{item.id}}</td>
           <td>
-            <form>
-              <div v-if="editingID !== item.id">
-              {{ item.name }}
-              <button  @click.prevent="edit(item)">編輯</button>
-              </div>
-              
-              <div v-else>
-                <input type="text" v-model="editName">
-              <button type="button" @click="saveEdit(item)">儲存</button>
-              <button type="button" @click="cancelEdit()">取消</button>
-              </div>
-
-            </form>
+            <div v-if="editingID !== item.id">
+            {{ item.name }}
+            <button  @click.prevent="edit(item)" class="btnEdit">編輯</button>
+            </div>
+            <div v-else>
+              <input type="text" v-model="editName">
+            <button type="button" @click="saveEdit(item)">儲存</button>
+            <button type="button" @click="cancelEdit()">取消</button>
+            </div>
           </td>
           <td>{{ item.description }}</td>
           <td>{{ item.price }}</td>
@@ -151,6 +147,27 @@ function cancelEdit(){
 
 .table {
   border:1px solid black;
-
+  border-collapse: collapse;
 }
+.table th,td  {
+  border: 1px solid black;
+  padding: 8px;
+}
+.table th {
+  background-color: #666;
+  color: #fff;
+}
+
+button {
+  border: 1px solid #666;
+  background-color: #666;
+  color: #fff;
+  margin: 0 1px;
+}
+
+button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
 </style>
